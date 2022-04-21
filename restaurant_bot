@@ -1,0 +1,83 @@
+# Import "chatbot" from
+# chatterbot package.
+from chatterbot import ChatBot
+
+# Inorder to train our bot, we have
+# to import a trainer package
+# "ChatterBotCorpusTrainer"
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
+
+# Give a name to the chatbot “simple bot”
+# and assign a trainer component.
+chatbot=ChatBot('simple bot')
+
+# Create a new trainer for the chatbot
+trainer = ChatterBotCorpusTrainer(chatbot)
+
+# Now let us train our bot with multiple corpus
+trainer.train("chatterbot.corpus.english.greetings",
+			"chatterbot.corpus.english.conversations" )
+
+response = chatbot.get_response('What is your Number')
+print(response)
+
+response = chatbot.get_response('Who are you?')
+print(response)
+
+Let's say something to our bot-
+
+show me restaurants
+The output will be the classification of intents that we have defined earlier in the intents section.
+{
+  "intent": {
+    "name": "search_resturant",
+    "confidence": 0.9999473094940186
+  },
+  "entities": [],
+  "intent_ranking": [
+    {
+      "name": "search_resturant",
+      "confidence": 0.9999473094940186
+    },
+    {
+      "name": "mood_unhappy",
+      "confidence": 4.397923839860596e-05
+    },
+    {
+      "name": "goodbye",
+      "confidence": 4.263904884282965e-06
+    },
+    {
+      "name": "greet",
+      "confidence": 1.823853835958289e-06
+    },
+    {
+      "name": "bot_challenge",
+      "confidence": 1.310950437982683e-06
+    },
+    {
+      "name": "deny",
+      "confidence": 6.058926942387188e-07
+    },
+    {
+      "name": "mood_great",
+      "confidence": 3.7935004115752236e-07
+    },
+    {
+      "name": "affirm",
+      "confidence": 3.4573960761008493e-07
+    }
+  ],
+  "response_selector": {
+    "default": {
+      "response": {
+        "name": null,
+        "confidence": 0.0
+      },
+      "ranking": [],
+      "full_retrieval_intent": null
+    }
+  },
+  "text": "show me restaurants"
+}
